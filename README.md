@@ -16,8 +16,8 @@ Visitors can ask anything about my professional profile — education, skills, P
 1. **Answer** questions using my CV (PDF) and a curated summary as grounding context.
 2. **Evaluate** each answer with a separate LLM acting as a quality reviewer — rejecting responses that drift off-tone or off-topic.
 3. **Regenerate** rejected responses using the evaluator's feedback, closing the loop.
-4. **Capture leads** — when a visitor shares an email, the chatbot calls a tool to record the contact via a Pushover notification.
-5. **Log gaps** — if a question falls outside the grounding context, the chatbot records it as an unknown question for later review.
+4. **Capture visitors and inquries** —> when a visitor shares an email, the chatbot calls a tool to record the contact via a Pushover notification.
+5. **Log gaps** —> if a question falls outside the grounding context, the chatbot records it as an unknown question for later review.
 
 ---
 
