@@ -39,27 +39,25 @@ All orchestration happens in the **`Orchestrator`** class (`LLM_Orchestrator.py`
 ---
 
 ## 🏗️ How It Works
-┌─────────────────┐
-│   User Query    │
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ Query Validator │ ◄── rejects gibberish early
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ Search Planner  │ ◄── plans N targeted searches
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ Research        │ ◄── parallel web searches
-│ Assistants (N)  │     via asyncio.gather
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│ Senior Writer   │ ◄── synthesises findings
-└────────┬────────┘
-         ▼
-┌─────────────────┐
-│  PDF Saver      │ ◄── exports downloadable PDF
-└─────────────────┘
+
+```text
+   User Query
+       │
+       ▼
+  Query Validator   ── rejects gibberish early
+       │
+       ▼
+  Search Planner    ── plans N targeted searches
+       │
+       ▼
+  Research Agents   ── parallel web searches (asyncio.gather)
+       │
+       ▼
+  Senior Writer     ── synthesises findings into markdown
+       │
+       ▼
+   PDF Saver        ── exports downloadable PDF
+       │
+       ▼
+   Final Report
+```
