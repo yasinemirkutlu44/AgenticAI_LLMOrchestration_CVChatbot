@@ -13,7 +13,7 @@ An autonomous research assistant that turns any research query into a structured
 Enter a research topic and the system will:
 
 1. **Validate** your query to ensure it's meaningful and actionable.
-2. **Plan** a multi-angle search strategy.
+2. **Plan** Plan a set of complementary web searches covering different aspects of the research query. For example, for "recent advancements in Large Language Models", the planner might produce one search on multimodal capabilities and another on agentic reasoning benchmarks.
 3. **Search** the web in parallel across those angles.
 4. **Synthesise** the findings into a structured markdown report.
 5. **Export** the report as a downloadable PDF.
