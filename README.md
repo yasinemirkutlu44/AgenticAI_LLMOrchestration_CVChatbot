@@ -2,7 +2,7 @@
 
 # 🔬 LLM-Orchestrated Agentic AI Researcher 📚
 
-An autonomous research assistant that turns any research query into a structured, downloadable PDF report — powered by an orchestration of specialised LLM agents, each handling a distinct step of the workflow.
+An autonomous researcher that turns any research query into a structured, downloadable PDF report — powered by an orchestration of specialised LLM agents, each handling a distinct step of the workflow.
 
 🚀 **Live demo:** [Hugging Face Space](https://huggingface.co/spaces/yasinemirkutlu44/LLM-Orchestrated_Agentic_AI_Researcher)
 
@@ -40,24 +40,90 @@ All orchestration happens in the **`Orchestrator`** class (`LLM_Orchestrator.py`
 
 ## 🏗️ How It Works
 
-```text
-   User Query
-       │
-       ▼
-  Query Validator   ── rejects gibberish early
-       │
-       ▼
-  Search Planner    ── plans N targeted searches
-       │
-       ▼
-  Research Agents   ── parallel web searches (asyncio.gather)
-       │
-       ▼
-  Senior Writer     ── synthesises findings into markdown
-       │
-       ▼
-   PDF Saver        ── exports downloadable PDF
-       │
-       ▼
-   Final Report
+```mermaid
+flowchart TD
+    A[👤 User Query] --> B[🛡️ Query Validator]
+    B -->|valid| C[🗺️ Search Planner]
+    B -->|invalid| X[❌ Rejected with reason]
+    C --> D[🌐 Research Assistants<br/>parallel via asyncio.gather]
+    D --> E[✍️ Senior Writer<br/>synthesises findings]
+    E --> F[📄 PDF Saver<br/>exports downloadable PDF]
+    F --> G[✅ Report delivered to user]
+
+    style A fill:#4a9eff,color:#fff
+    style B fill:#ff6b6b,color:#fff
+    style C fill:#ffa500,color:#fff
+    style D fill:#22c55e,color:#fff
+    style E fill:#a855f7,color:#fff
+    style F fill:#3b82f6,color:#fff
+    style G fill:#10b981,color:#fff
 ```
+
+Parallel search execution via `asyncio.gather` keeps latency low. Pydantic schemas at each agent boundary guarantee the next agent receives well-formed, validated data.
+
+---
+
+## 🚀 Running Locally
+
+**1. Clone the repo**
+
+```bash
+git clone https://github.com/<your-username>/LLM-Orchestrated-Agentic-AI-Researcher.git
+cd LLM-Orchestrated-Agentic-AI-Researcher
+```
+
+**2. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**3. Set your OpenAI API key**
+
+Create a `.env` file in the project root: OPENAI_API_KEY=sk-...
+
+**4. Launch the app**
+
+```bash
+python application.py
+```
+
+The UI opens in your browser at `http://localhost:7860`.
+
+---
+
+## 💡 UX Details
+
+- **Input validation** — empty, too-short, or nonsensical queries are rejected before any API calls, with a clear toast message.
+- **Live progress bar** — each stage updates a percentage (20% → 50% → 75% → 95% → 100%) so users see what's happening.
+- **Locked inputs during run** — the Run button and textbox disable mid-run to prevent double-submission.
+- **Restart button** — clears the session and returns to a fresh state.
+- **PDF download** — the generated report is immediately available as a downloadable file.
+
+---
+
+## 🧩 Design Notes
+
+- **Why split into agents?** Each agent has focused instructions and a narrow output type, making outputs more reliable than a monolithic prompt. It also mirrors how real research workflows are structured.
+- **Why Pydantic outputs?** Structured outputs remove fragile text parsing between stages. The planner returns `WebSearchPlan`; the writer returns `ReportOutline` — the orchestrator never has to guess.
+- **Why direct function call for PDF?** The `PDF Saver` tool is logically an agent, but functionally just file I/O. Calling the underlying function directly (skipping the LLM) is faster, cheaper, and deterministic.
+
+---
+
+## 🔮 Possible Extensions
+
+- Save markdown report alongside PDF for easy editing
+- Persistent history of past reports (sidebar)
+- Configurable number of search angles
+- Option to select between frontier models (Claude, Gemma etc.)
+- Mid-run cancel button
+
+---
+
+## 📜 License
+
+MIT — feel free to fork, adapt, and build on top of this.
+
+---
+
+🧠 **Built with OpenAI frontier models and the OpenAI Agents SDK** 🚀
