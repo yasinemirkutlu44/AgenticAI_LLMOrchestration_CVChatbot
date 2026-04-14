@@ -66,27 +66,26 @@ All logic lives in the **`Person`** class, which loads the grounding documents, 
 ```mermaid
 flowchart TD
     A[👤 Visitor Message] --> B{🛡️ Prompt-Injection Check}
-    B -->|clean| C[🗣️ Primary Agent<br/>gpt-4o-mini]
-    B -->|suspicious trigger| D[🎭 Defensive Mode<br/>responds in pig latin]
+    B -->|clean| C[🗣️ Primary Agentgpt-4o-mini]
+    B -->|suspicious trigger| C2[🗣️ Primary Agentwith pig-latin system prompt]
 
     C --> E{Tool call needed?}
-    E -->|yes, contact shared| F[📝 user_details_get<br/>→ Pushover notification]
-    E -->|yes, unknown question| G[❓ unknown_question_get<br/>→ Pushover notification]
+    C2 --> E
+    E -->|yes, contact shared| F[📝 user_details_get→ Pushover notification]
+    E -->|yes, unknown question| G[❓ unknown_question_get→ Pushover notification]
     E -->|no| H[💬 Generate reply]
     F --> H
     G --> H
 
-    H --> I[🧑‍⚖️ Evaluator Agent<br/>gpt-5.4-mini]
+    H --> I[🧑‍⚖️ Evaluator Agentgpt-5.4-mini]
     I -->|acceptable| J[✅ Return reply to user]
     I -->|rejected| K[🔁 Regenerate with feedback]
     K --> J
 
-    D --> J
-
     style A fill:#4a9eff,color:#fff
     style B fill:#ff6b6b,color:#fff
     style C fill:#ffa500,color:#fff
-    style D fill:#9ca3af,color:#fff
+    style C2 fill:#9ca3af,color:#fff
     style F fill:#22c55e,color:#fff
     style G fill:#22c55e,color:#fff
     style H fill:#a855f7,color:#fff
