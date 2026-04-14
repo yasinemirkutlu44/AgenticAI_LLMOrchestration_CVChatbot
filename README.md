@@ -31,12 +31,12 @@ The chatbot welcomes visitors and invites them to ask about my career.
 Answers are drawn from the CV and summary — specific, factual, and in my voice.
 ![Chatbot response](Screenshots/chatbot_response.png)
 
-### Lead capture in action
+### Potential Employer capture in action
 When a visitor shares their email, the chatbot collects their name, email, and notes.
 ![Contact capture](Screenshots/contact_text.png)
 
-### Real-time Pushover notification — new lead
-A tool call fires as soon as the visitor's email is shared, delivering the lead straight to my phone.
+### Real-time Pushover notification: Employer got in touch
+A tool call fires as soon as the visitor's email is shared, delivering their details straight to my phone.
 ![Pushover — new lead](Screenshots/potential_client_reachout.png)
 
 ### Real-time Pushover notification — unknown question
