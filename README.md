@@ -29,7 +29,7 @@ The system orchestrates five specialised agents, each with a single responsibili
 | Agent | Role | Output |
 |-------|------|--------|
 | 🛡️ **Query Validator** | Decides whether the user's query is a meaningful research question or gibberish. Blocks empty/nonsensical inputs before any expensive calls. | `QueryValidationInput` (`is_valid`, `reason`) |
-| 🗺️ **Search Planner** | Breaks the query into targeted, complementary search terms covering distinct angles. | `WebSearchPlan` (list of `WebSearchItem`) |
+| 🗺️ **Search Planner** | Breaks the query into targeted, complementary search terms covering different aspects of the research query. | `WebSearchPlan` (list of `WebSearchItem`) |
 | 🌐 **Research Assistant** | Performs a web search for each planned term and returns a dense 2–3 paragraph summary. Runs in parallel across all search items. | Summary text per search |
 | ✍️ **Senior Writer** | Synthesises all search summaries into a cohesive, multi-section markdown report (~1,500+ words). | `ReportOutline` (`summary`, `report`, `suggested_questions`) |
 | 📄 **PDF Saver** | Renders the markdown report as a styled PDF and saves it to disk. | File path to the generated PDF |
