@@ -3,7 +3,7 @@
 
 An interactive chatbot that answers questions about my career, skills and experience on my behalf — powered by an **evaluator–optimiser LLM workflow**, real-time Pushover notifications, and tool-calling agents.
 
-🚀 **Live demo:** [Hugging Face Space](https://huggingface.co/spaces/yasinemirkutlu44/AgenticAI_ResumeChatbot)
+🚀 **A live demo is available here:** [Hugging Face Space](https://huggingface.co/spaces/yasinemirkutlu44/AgenticAI_ResumeChatbot)
 
 Ask about my background, get a professional answer → if the tone isn't right, a second model evaluates the response and the first model regenerates it based on that feedback.
 
